@@ -22,9 +22,14 @@ def get_channel_info():
         url = request.form['url']
     api_key = "AIzaSyDbVke3REsYIKgozMWQGD3yNDonX7fJk90"
     try:
-        video_id = url.split("=")[1]
+        if ('=' in url):
+            video_id = url.split("=")[1]
+        else:
+            video_id = url.split("/")[3]
     except Exception as e:
         self.logger.log(str(e))
+    if len(video_id) != 11:
+        return <h3>Please enter a valid url</h3>
     video_info_url = f"https://www.googleapis.com/youtube/v3/videos?part=snippet&id={video_id}&key={api_key}"
     video_comments = f"https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId={video_id}&key={api_key}"
     video_info_response = requests.get(video_info_url)
