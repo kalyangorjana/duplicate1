@@ -29,7 +29,7 @@ def get_channel_info():
     except Exception as e:
         self.logger.log(str(e))
     if len(video_id) != 11:
-        return <h3>Please enter a valid url</h3>
+        return "<h3>Please enter a valid url</h3>"
     video_info_url = f"https://www.googleapis.com/youtube/v3/videos?part=snippet&id={video_id}&key={api_key}"
     video_comments = f"https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId={video_id}&key={api_key}"
     video_info_response = requests.get(video_info_url)
